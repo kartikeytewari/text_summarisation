@@ -1,0 +1,1 @@
+sum_local_global_file_weight=10
