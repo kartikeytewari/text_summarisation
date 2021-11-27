@@ -3,4 +3,3 @@ install:
 
 run:
 	./main.py input/test
- 
