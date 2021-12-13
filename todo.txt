@@ -1,0 +1,7 @@
+change variable names
+change function names
+change filename in library
+change text_lib library name
+change comments from ## -> #
+write better comments and documentation
+fix- test is not working 

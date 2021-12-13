@@ -5,13 +5,6 @@ from pprint import pprint
 from text_lib.freq_score import *
 from text_lib.config_var import *
 
-# TODO: change variable names
-# TODO: change function names
-# TODO: change filename in library
-# TODO: change text_lib library name
-# TODO: change comments from ## -> #
-# TODO: write better comments and documentation
-
 # genrate token for all files
 folder=sys.argv[1]
 file_freq={}
