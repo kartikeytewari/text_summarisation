@@ -94,3 +94,11 @@ def gen_summary (long_local_file, local_token_score):
     summary_text="".join(str(i) for i in summary_sentences_2)
 
     return summary_text
+
+def get_ref_summary(file_path):
+    # read the file
+    text_file=open(file_path)
+    raw_text=text_file.read()
+    text_file.close()
+
+    return raw_text
