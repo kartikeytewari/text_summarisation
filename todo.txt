@@ -6,3 +6,4 @@ change comments from ## -> #
 write better comments and documentation
 fix- test is not working 
 correct requirements.txt file
+implement what we do when main.py is called with incorrect number of arguments
