@@ -9,11 +9,17 @@ os.environ["TF_CPP_MIN_LOG_LEVEL"] = "3"
 # load dataset
 ds = tfds.load('multi_news', data_dir="./input/multi_news", split="train")
 
+# generate new folder structure
+os.system("rm -rf ./input/multi_news_input")
+os.system("mkdir ./input/multi_news_input")
+os.system("mkdir ./input/multi_news_input/document")
+os.system("mkdir ./input/multi_news_input/summary")
+
 # write data to expected file format
 old_output=sys.stdout
 count=0
 for i in ds:
-    if (count<10):
+    if (count<=10):
         file_name_document="file://./input/multi_news_input/document/" + str(count)
         # sys.stdout=file_name_document
         tf.print(i["document"], output_stream=file_name_document)
