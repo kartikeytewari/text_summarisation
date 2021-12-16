@@ -6,7 +6,7 @@ from text_lib.config_var import *
 nlp=spacy.load('en_core_web_lg')
 
 # filter of extra words
-extra_word=list(STOP_WORDS) + list(punctuation) + list("\n")
+extra_word=list(STOP_WORDS) + list(punctuation) + list("\n") + list("|||||")
 
 def gen_freq_file(file_path):
     # read the file
