@@ -17,15 +17,13 @@ for i in file_list:
 
 global_token_score=gen_global_token_score(file_freq)
 rouge=Rouge()
+# print first line of excel sheet
+print("local_file_weight, local_file, rouge-1 f1-score, rouge-1 precision, rouge-1 recall,rouge-2 f1-score, rouge-2 precision, rouge-2 recall, rouge-l f1-score, rouge-l precision, rouge-l recall")
 for local_file_weight in list(range(1,sum_local_global_file_weight+1,1)):
-    print("----------------------")
-    print("")
-    print("local_file_weight = " + str(local_file_weight))
     for local_file in file_list:
         long_local_file=str(sys.argv[1]) + "/" + local_file
         local_token_score=gen_local_token_score(local_file_weight, long_local_file, file_freq, global_token_score)
         
-        print("local_file= " + str(local_file))
         # generate summary based on score calculated in local_token_score for each file
         local_file_summary=gen_summary(long_local_file, local_token_score)
         # print(local_file_summary)
@@ -37,6 +35,18 @@ for local_file_weight in list(range(1,sum_local_global_file_weight+1,1)):
 
         # generate metrics
         # ROUGE SCORE
-        pprint(rouge.get_scores(local_file_summary, ref_summary))
-        print("")
-    print("----------------------")
+        rouge_score=rouge.get_scores(local_file_summary, ref_summary)
+        rouge_score=rouge_score[0]
+        print(
+            str(local_file_weight) + "," + 
+            str(local_file) + "," + 
+            str(rouge_score["rouge-1"]["f"]) + "," + 
+            str(rouge_score["rouge-1"]["p"]) + "," + 
+            str(rouge_score["rouge-1"]["r"]) + "," + 
+            str(rouge_score["rouge-2"]["f"]) + "," + 
+            str(rouge_score["rouge-2"]["p"]) + "," + 
+            str(rouge_score["rouge-2"]["r"]) + "," + 
+            str(rouge_score["rouge-l"]["f"]) + "," + 
+            str(rouge_score["rouge-l"]["p"]) + "," + 
+            str(rouge_score["rouge-l"]["r"])
+        )
