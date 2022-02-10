@@ -11,11 +11,17 @@ folder=sys.argv[1]
 file_freq={}
 file_list=list(os.walk(folder))[0][2]
 file_list.sort()
+
+print ("generating file_freq")
 for i in file_list:
+    print ("file_freq i= " + str(i))
     local_file_path=str(sys.argv[1]) + "/" + str(i)
     file_freq[local_file_path]=gen_freq_file(local_file_path)
+print ("calculated file_freq")
 
+print ("generating global_token_score")
 global_token_score=gen_global_token_score(file_freq)
+print ("calculated global_token_score")
 rouge=Rouge()
 # print first line of excel sheet
 print("local_file_weight, local_file, rouge-1 f1-score, rouge-1 precision, rouge-1 recall,rouge-2 f1-score, rouge-2 precision, rouge-2 recall, rouge-l f1-score, rouge-l precision, rouge-l recall")
