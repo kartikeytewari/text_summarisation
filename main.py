@@ -5,6 +5,7 @@ from pprint import pprint
 from text_lib.freq_score import *
 from text_lib.config_var import *
 from rouge import Rouge
+from nltk.translate.bleu_score import corpus_bleu
 
 # genrate token for all files
 folder=sys.argv[1]
@@ -21,6 +22,11 @@ rouge=Rouge()
 print("local_file_weight, local_file, rouge-1 f1-score, rouge-1 precision, rouge-1 recall,rouge-2 f1-score, rouge-2 precision, rouge-2 recall, rouge-l f1-score, rouge-l precision, rouge-l recall")
 for local_file_weight in list(range(1,sum_local_global_file_weight+1,1)):
     for local_file in file_list:
+        
+        # print logging information
+        print ("local_file_weigh= " + str(local_file_weight))
+        print ("local_file= " + str(local_file))
+
         long_local_file=str(sys.argv[1]) + "/" + local_file
         local_token_score=gen_local_token_score(local_file_weight, long_local_file, file_freq, global_token_score)
         
@@ -50,3 +56,23 @@ for local_file_weight in list(range(1,sum_local_global_file_weight+1,1)):
             str(rouge_score["rouge-l"]["p"]) + "," + 
             str(rouge_score["rouge-l"]["r"])
         )
+
+        ref_summary_token_simple = token_gen(ref_summary)
+        local_file_summary_token = token_gen(local_file_summary)
+
+        ref_summary_token = []
+        ref_summary_token.append(ref_summary_token_simple)
+
+        print ("")
+        print ("ref_summary_token:")
+        print (ref_summary_token)
+        print ("")
+        print ("local_file_summary_token:")
+        print (local_file_summary_token)
+        print ("")
+        print ("1-gram= " + str(corpus_bleu(ref_summary_token, local_file_summary_token), weight(1,0,0,0)))
+        print ("2-gram= " + str(corpus_bleu(ref_summary_token, local_file_summary_token), weight(0,1,0,0)))
+        print ("3-gram= " + str(corpus_bleu(ref_summary_token, local_file_summary_token), weight(0,0,1,0)))
+        print ("4-gram= " + str(corpus_bleu(ref_summary_token, local_file_summary_token), weight(0,0,0,1)))
+        print ("--------")
+        print ("")

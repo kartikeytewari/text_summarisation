@@ -1,3 +1,6 @@
+run_test:
+	python3 main.py ./input/multi_news_input/document ./input/multi_news_input/summary &> out
+
 install:
 	pip3 install requirements.txt
 

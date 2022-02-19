@@ -102,3 +102,13 @@ def get_ref_summary(file_path):
     text_file.close()
 
     return raw_text
+
+# input: text in paragraph form
+# output: tokens of text
+def token_gen(raw_text):
+    file_token=nlp(raw_text)
+    tokens=[]
+    for token in file_token:
+        tokens.append(token.text)
+
+    return tokens
