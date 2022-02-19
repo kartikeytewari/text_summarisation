@@ -5,7 +5,7 @@ from pprint import pprint
 from text_lib.freq_score import *
 from text_lib.config_var import *
 from rouge import Rouge
-from nltk.translate.bleu_score import corpus_bleu
+from datasets import load_metric
 
 # genrate token for all files
 folder=sys.argv[1]
@@ -59,10 +59,14 @@ for local_file_weight in list(range(1,sum_local_global_file_weight+1,1)):
             str(rouge_score["rouge-l"]["r"])
         )
 
-        local_file_summary_token = token_gen(local_file_summary)
+        local_file_summary_token = []
+        local_file_summary_token.append(token_gen(local_file_summary))
+
+        ref_summary_token_temp = []
+        ref_summary_token_temp.append(token_gen(ref_summary))
 
         ref_summary_token = []
-        ref_summary_token.append(ref_summary_token_simple)
+        ref_summary_token.append(ref_summary_token_temp)
 
         print ("")
         print ("ref_summary_token_simple length = " + str(len(ref_summary_token_simple)))
@@ -73,9 +77,7 @@ for local_file_weight in list(range(1,sum_local_global_file_weight+1,1)):
         print ("local_file_summary_token:")
         print (local_file_summary_token)
         print ("")
-        print ("1-gram= " + str(corpus_bleu(ref_summary_token, local_file_summary_token), weight(1,0,0,0)))
-        print ("2-gram= " + str(corpus_bleu(ref_summary_token, local_file_summary_token), weight(0,1,0,0)))
-        print ("3-gram= " + str(corpus_bleu(ref_summary_token, local_file_summary_token), weight(0,0,1,0)))
-        print ("4-gram= " + str(corpus_bleu(ref_summary_token, local_file_summary_token), weight(0,0,0,1)))
+        bleu=load_metric("bleu")
+        print(bleu.compute(predictions=local_file_summary_token, references=ref_summary_token))
         print ("--------")
         print ("")
