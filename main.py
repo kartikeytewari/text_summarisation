@@ -19,13 +19,9 @@ for i in file_list:
 global_token_score=gen_global_token_score(file_freq)
 rouge=Rouge()
 # print first line of excel sheet
-print("local_file_weight, local_file, rouge-1 f1-score, rouge-1 precision, rouge-1 recall,rouge-2 f1-score, rouge-2 precision, rouge-2 recall, rouge-l f1-score, rouge-l precision, rouge-l recall")
+print("local_file_weight, local_file, rouge-1 f1-score, rouge-1 precision, rouge-1 recall,rouge-2 f1-score, rouge-2 precision, rouge-2 recall, rouge-l f1-score, rouge-l precision, rouge-l recall, bleu-1, bleu-2, bleu-3. bleu-4")
 for local_file_weight in list(range(1,sum_local_global_file_weight+1,1)):
     for local_file in file_list:
-        
-        # print logging information
-        print ("local_file_weigh= " + str(local_file_weight))
-        print ("local_file= " + str(local_file))
 
         long_local_file=str(sys.argv[1]) + "/" + local_file
         local_token_score=gen_local_token_score(local_file_weight, long_local_file, file_freq, global_token_score)
@@ -42,9 +38,23 @@ for local_file_weight in list(range(1,sum_local_global_file_weight+1,1)):
         # print(local_file_summary)
 
         # generate metrics
-        # ROUGE SCORE
+        # ROUGE Score
         rouge_score=rouge.get_scores(local_file_summary, ref_summary)
         rouge_score=rouge_score[0]
+
+        # BLEU Score
+        local_file_summary_token = []
+        local_file_summary_token.append(token_gen(local_file_summary))
+
+        ref_summary_token_temp = []
+        ref_summary_token_temp.append(token_gen(ref_summary))
+        ref_summary_token = []
+        ref_summary_token.append(ref_summary_token_temp)
+
+        bleu=load_metric("bleu")
+        bleu_score = bleu.compute(predictions=local_file_summary_token, references=ref_summary_token)
+
+        # print metrics
         print(
             str(local_file_weight) + "," + 
             str(local_file) + "," + 
@@ -56,28 +66,9 @@ for local_file_weight in list(range(1,sum_local_global_file_weight+1,1)):
             str(rouge_score["rouge-2"]["r"]) + "," + 
             str(rouge_score["rouge-l"]["f"]) + "," + 
             str(rouge_score["rouge-l"]["p"]) + "," + 
-            str(rouge_score["rouge-l"]["r"])
+            str(rouge_score["rouge-l"]["r"]) + "," + 
+            str(bleu_score["precisions"][0]) + "," + 
+            str(bleu_score["precisions"][1]) + "," + 
+            str(bleu_score["precisions"][2]) + "," + 
+            str(bleu_score["precisions"][3])
         )
-
-        local_file_summary_token = []
-        local_file_summary_token.append(token_gen(local_file_summary))
-
-        ref_summary_token_temp = []
-        ref_summary_token_temp.append(token_gen(ref_summary))
-
-        ref_summary_token = []
-        ref_summary_token.append(ref_summary_token_temp)
-
-        print ("")
-        print ("ref_summary_token_simple length = " + str(len(ref_summary_token_simple)))
-        print ("local_file_summary_token length = " + str(len(local_file_summary_token)))
-        print ("ref_summary_token:")
-        print (ref_summary_token)
-        print ("")
-        print ("local_file_summary_token:")
-        print (local_file_summary_token)
-        print ("")
-        bleu=load_metric("bleu")
-        print(bleu.compute(predictions=local_file_summary_token, references=ref_summary_token))
-        print ("--------")
-        print ("")
