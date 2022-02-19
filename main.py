@@ -38,7 +38,7 @@ for local_file_weight in list(range(1,sum_local_global_file_weight+1,1)):
         # generate summary based on score calculated in local_token_score for each file
         ref_summary_token_simple = token_gen(ref_summary)
         # local_file_summary=gen_summary(long_local_file, local_token_score, len(ref_summary_token_simple))
-        local_file_summary=gen_summary(long_local_file, local_token_score, 10)
+        local_file_summary=gen_summary(long_local_file, local_token_score)
         # print(local_file_summary)
 
         # generate metrics
