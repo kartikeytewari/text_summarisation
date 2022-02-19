@@ -1,5 +1,5 @@
 run_test:
-	python3 -u main.py ./input/multi_news_input/document ./input/multi_news_input/summary &> out.txt
+	python3 -u main.py ./input/multi_news_input/document ./input/multi_news_input/summary &> out.csv
 
 install:
 	pip3 install requirements.txt
