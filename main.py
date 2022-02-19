@@ -30,14 +30,16 @@ for local_file_weight in list(range(1,sum_local_global_file_weight+1,1)):
         long_local_file=str(sys.argv[1]) + "/" + local_file
         local_token_score=gen_local_token_score(local_file_weight, long_local_file, file_freq, global_token_score)
         
-        # generate summary based on score calculated in local_token_score for each file
-        local_file_summary=gen_summary(long_local_file, local_token_score)
-        # print(local_file_summary)
-
         # reference summary
         ref_summary_file=str(sys.argv[2]) + "/" + local_file
         ref_summary=get_ref_summary(ref_summary_file)
         # print("ref_summary= " + str(ref_summary))
+
+        # generate summary based on score calculated in local_token_score for each file
+        ref_summary_token_simple = token_gen(ref_summary)
+        # local_file_summary=gen_summary(long_local_file, local_token_score, len(ref_summary_token_simple))
+        local_file_summary=gen_summary(long_local_file, local_token_score, 10)
+        # print(local_file_summary)
 
         # generate metrics
         # ROUGE SCORE
@@ -57,13 +59,14 @@ for local_file_weight in list(range(1,sum_local_global_file_weight+1,1)):
             str(rouge_score["rouge-l"]["r"])
         )
 
-        ref_summary_token_simple = token_gen(ref_summary)
         local_file_summary_token = token_gen(local_file_summary)
 
         ref_summary_token = []
         ref_summary_token.append(ref_summary_token_simple)
 
         print ("")
+        print ("ref_summary_token_simple length = " + str(len(ref_summary_token_simple)))
+        print ("local_file_summary_token length = " + str(len(local_file_summary_token)))
         print ("ref_summary_token:")
         print (ref_summary_token)
         print ("")
