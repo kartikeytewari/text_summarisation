@@ -54,8 +54,7 @@ def gen_local_token_score(local_file_weight, local_file, file_freq, global_token
 
 # generates summary of file name called as long_local_file 
 # given the scores to be local_token_score
-def gen_summary (long_local_file, local_token_score, summary_word_count):
-    print ("summary_word_count = " + str(summary_word_count))
+def gen_summary (long_local_file, local_token_score):
     # read the file
     text_file=open(long_local_file)
     raw_text=text_file.read()
@@ -82,11 +81,8 @@ def gen_summary (long_local_file, local_token_score, summary_word_count):
                     # first word of sentence
                     sentence_token_score[i]=local_token_score[lower_word]
     
-    print ("--------")
-    print (sentence_token_score)
-    print ("--------")
-
-    summary_sentences_1=nlargest(summary_word_count, sentence_token_score, key=sentence_token_score.get)
+    select_length=int(len(sentence_token)*summary_size)
+    summary_sentences_1=nlargest(select_length, sentence_token_score, key=sentence_token_score.get)
     
 
     summary_sentences_2=[]
