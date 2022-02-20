@@ -19,7 +19,7 @@ os.system("mkdir ./input/multi_news_input/summary")
 old_output=sys.stdout
 count=0
 for i in ds:
-    if (count<=9):
+    if (count<=99):
         file_name_document="file://./input/multi_news_input/document/" + str(count)
         # sys.stdout=file_name_document
         tf.print(i["document"], output_stream=file_name_document)
