@@ -1,6 +1,7 @@
 #! /usr/bin/env python3
 import sys
 import os
+import numpy as np
 from pprint import pprint
 from text_lib.freq_score import *
 from text_lib.config_var import *
@@ -20,9 +21,10 @@ global_token_score=gen_global_token_score(file_freq)
 rouge=Rouge()
 # print first line of excel sheet
 print("local_file_weight, local_file, rouge-1 f1-score, rouge-1 precision, rouge-1 recall,rouge-2 f1-score, rouge-2 precision, rouge-2 recall, rouge-l f1-score, rouge-l precision, rouge-l recall, bleu-1, bleu-2, bleu-3, bleu-4")
-for local_file_weight in list(range(1,sum_local_global_file_weight+1,1)):
+for local_file_weight in list(np.arange(90.0,100.1,0.1)):
     for local_file in file_list:
 
+        local_file_weight=round(local_file_weight,2)
         long_local_file=str(sys.argv[1]) + "/" + local_file
         local_token_score=gen_local_token_score(local_file_weight, long_local_file, file_freq, global_token_score)
         
