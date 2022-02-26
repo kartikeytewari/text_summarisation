@@ -1,0 +1,29 @@
+ROUGE-1 F1-score val= 0.287743
+ROUGE-1 F1-score index= 100
+ROUGE-1 Precision val= 0.219487
+ROUGE-1 Precision index= 99.1
+ROUGE-1 Recall val= 0.510368
+ROUGE-1 Recall index= 100
+
+ROUGE-2 F1-score val= 0.109071
+ROUGE-2 F1-score index= 100
+ROUGE-2 Precision val= 0.0815085
+ROUGE-2 Precision index= 99.7
+ROUGE-2 Recall val= 0.229784
+ROUGE-2 Recall index= 100
+
+ROUGE-L F1-score val= 0.265593
+ROUGE-L F1-score index= 100
+ROUGE-L Precision val= 0.201955
+ROUGE-L Precision index= 99.6
+ROUGE-L Recall val= 0.472664
+ROUGE-L Recall index= 100
+
+BLEU-1 val= 0.205221
+BLEU-1 index= 90
+BLEU-2 val= 0.0791072
+BLEU-2 index= 98.4
+BLEU-3 val= 0.0441851
+BLEU-3 index= 99.7
+BLEU-4 val= 0.0315079
+BLEU-4 index= 99.7
