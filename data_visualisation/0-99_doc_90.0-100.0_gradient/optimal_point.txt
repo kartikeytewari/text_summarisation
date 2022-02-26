@@ -1,0 +1,10 @@
+rouge-1 f1-score = 
+rouge-2 f1-score = 
+rouge-l f1-score = 
+bleu-1 = 
+bleu-2 = 
+bleu-3 = 
+bleu-4 = 
+
+
+Add file count print in error stream to get the number of documents processed.
