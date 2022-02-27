@@ -1,13 +1,16 @@
 all:
-	make delete 
+	make delete_log 
 	make compile
 	make run_folder_1
 	make run_folder_2
 	make run_folder_3
 	make run_folder_4
+	make delete_binary
 
-delete:
+delete_binary:
 	trash in.csv in.temp.csv in.txt main main.dSYM
+
+delete_log:
 	trash ../0-9_doc_1-10_gradient/max_position.txt
 	trash ../0-9_doc_1-100_gradient/max_position.txt
 	trash ../0-99_doc_1-100_gradient/max_position.txt
