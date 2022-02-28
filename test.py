@@ -23,49 +23,52 @@ rouge=Rouge()
 print("local_file, rouge-1 f1-score, rouge-1 precision, rouge-1 recall,rouge-2 f1-score, rouge-2 precision, rouge-2 recall, rouge-l f1-score, rouge-l precision, rouge-l recall, bleu-1, bleu-2, bleu-3, bleu-4")
 local_file_weight=95.0
 processed_file_count=0
-for local_file in file_list:
-    print ("Process file count = " + str(processed_file_count))
-    local_file_weight=round(local_file_weight,2)
-    long_local_file=str(sys.argv[1]) + "/" + local_file
-    local_token_score=gen_local_token_score(local_file_weight, long_local_file, file_freq, global_token_score)
-    
-    # reference summary
-    ref_summary_file=str(sys.argv[2]) + "/" + local_file
-    ref_summary=get_ref_summary(ref_summary_file)
-    # print("ref_summary= " + str(ref_summary))
+# for local_file in file_list:
+local_file=str(4547)
+# log file count 
+sys.stderr.write("Process file count = " + str(processed_file_count) + "\n")
 
-    # generate summary based on score calculated in local_token_score for each file
-    ref_summary_token_simple = token_gen(ref_summary)
-    # local_file_summary=gen_summary(long_local_file, local_token_score, len(ref_summary_token_simple))
-    local_file_summary=gen_summary(long_local_file, local_token_score)
-    # print(local_file_summary)
+local_file_weight=round(local_file_weight,2)
+long_local_file=str(sys.argv[1]) + "/" + local_file
+local_token_score=gen_local_token_score(local_file_weight, long_local_file, file_freq, global_token_score)
 
-    # generate metrics
-    # ROUGE Score
-    rouge_score=rouge.get_scores(local_file_summary, ref_summary)
-    rouge_score=rouge_score[0]
+# reference summary
+ref_summary_file=str(sys.argv[2]) + "/" + local_file
+ref_summary=get_ref_summary(ref_summary_file)
+# print("ref_summary= " + str(ref_summary))
 
-    # BLEU Score
-    local_file_summary_token = token_gen(local_file_summary)
+# generate summary based on score calculated in local_token_score for each file
+ref_summary_token_simple = token_gen(ref_summary)
+# local_file_summary=gen_summary(long_local_file, local_token_score, len(ref_summary_token_simple))
+local_file_summary=gen_summary(long_local_file, local_token_score)
+# print(local_file_summary)
 
-    ref_summary_token = []
-    ref_summary_token.append(token_gen(ref_summary))
+# generate metrics
+# ROUGE Score
+rouge_score=rouge.get_scores(local_file_summary, ref_summary)
+rouge_score=rouge_score[0]
 
-    # print metrics
-    print( 
-        str(local_file) + "," + 
-        str(rouge_score["rouge-1"]["f"]) + "," + 
-        str(rouge_score["rouge-1"]["p"]) + "," + 
-        str(rouge_score["rouge-1"]["r"]) + "," + 
-        str(rouge_score["rouge-2"]["f"]) + "," + 
-        str(rouge_score["rouge-2"]["p"]) + "," + 
-        str(rouge_score["rouge-2"]["r"]) + "," + 
-        str(rouge_score["rouge-l"]["f"]) + "," + 
-        str(rouge_score["rouge-l"]["p"]) + "," + 
-        str(rouge_score["rouge-l"]["r"]) + "," + 
-        str(sentence_bleu(ref_summary_token, local_file_summary_token, weights=(1, 0, 0, 0))) + "," + 
-        str(sentence_bleu(ref_summary_token, local_file_summary_token, weights=(0, 1, 0, 0))) + "," + 
-        str(sentence_bleu(ref_summary_token, local_file_summary_token, weights=(0, 0, 1, 0))) + "," + 
-        str(sentence_bleu(ref_summary_token, local_file_summary_token, weights=(0, 0, 0, 1)))
-    )
-    processed_file_count+=1
+# BLEU Score
+local_file_summary_token = token_gen(local_file_summary)
+
+ref_summary_token = []
+ref_summary_token.append(token_gen(ref_summary))
+
+# print metrics
+print( 
+    str(local_file) + "," + 
+    str(rouge_score["rouge-1"]["f"]) + "," + 
+    str(rouge_score["rouge-1"]["p"]) + "," + 
+    str(rouge_score["rouge-1"]["r"]) + "," + 
+    str(rouge_score["rouge-2"]["f"]) + "," + 
+    str(rouge_score["rouge-2"]["p"]) + "," + 
+    str(rouge_score["rouge-2"]["r"]) + "," + 
+    str(rouge_score["rouge-l"]["f"]) + "," + 
+    str(rouge_score["rouge-l"]["p"]) + "," + 
+    str(rouge_score["rouge-l"]["r"]) + "," + 
+    str(sentence_bleu(ref_summary_token, local_file_summary_token, weights=(1, 0, 0, 0))) + "," + 
+    str(sentence_bleu(ref_summary_token, local_file_summary_token, weights=(0, 1, 0, 0))) + "," + 
+    str(sentence_bleu(ref_summary_token, local_file_summary_token, weights=(0, 0, 1, 0))) + "," + 
+    str(sentence_bleu(ref_summary_token, local_file_summary_token, weights=(0, 0, 0, 1)))
+)
+processed_file_count+=1

@@ -81,7 +81,7 @@ def gen_summary (long_local_file, local_token_score):
                     # first word of sentence
                     sentence_token_score[i]=local_token_score[lower_word]
 
-    select_length=int(len(sentence_token)*summary_size)
+    select_length=max(int(len(sentence_token)*summary_size),1)
     summary_sentences_1=nlargest(select_length, sentence_token_score, key=sentence_token_score.get)
     
 
