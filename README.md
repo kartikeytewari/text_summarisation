@@ -12,3 +12,7 @@ Text summarisation of multi-document datasets using NLP and ML methods.
 - requirements.txt file (pip 22.0.3)
 - bash/zsh shell (zsh 5.8.1)
 - C++ (gcc version 11.2.0 (Homebrew GCC 11.2.0_3))
+
+# Output files:
+- local_file_weight-95.0
+- local_file_weight-97.5
