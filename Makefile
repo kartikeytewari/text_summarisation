@@ -1,5 +1,5 @@
 run_test:
-	python3 -u test.py ./input/multi_news_input/document ./input/multi_news_input/summary > test.csv
+	python3 -u test.py ./input/multi_news_input/document ./input/multi_news_input/summary > output/local_file_weight-97.5/out.csv
 	terminal-notifier -title "Text Summarisation" -message "Process completed" -sound "default"
 
 run_train:
