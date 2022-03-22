@@ -17,3 +17,4 @@ Text summarisation of multi-document datasets using NLP and ML methods.
 - local_file_weight 95.0
 - local_file_weight 97.5
 - local_file_weight 98.5
+- local_file_weight 99.5
