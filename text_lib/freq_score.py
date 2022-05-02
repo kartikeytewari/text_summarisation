@@ -6,7 +6,9 @@ from text_lib.config_var import *
 nlp=spacy.load('en_core_web_lg')
 
 # filter of extra words
-extra_word=list(STOP_WORDS) + list(punctuation) + list("\n") + list("|||||")
+extra_word=list(STOP_WORDS) + list(punctuation) + list("\n")
+extra_word.append("|||||")
+new_line_string="\n"
 
 def gen_freq_file(file_path):
     # read the file
@@ -25,10 +27,11 @@ def gen_freq_file(file_path):
     for word in file_token:
         word_key=word.text.lower()
         if word_key not in extra_word:
-            if word_key not in word_freq.keys():
-                word_freq[word_key]=1
-            else:
-                word_freq[word_key]+=1
+            if new_line_string not in word_key:
+                if word_key not in word_freq.keys():
+                    word_freq[word_key]=1
+                else:
+                    word_freq[word_key]+=1
 
     return word_freq
 
@@ -74,12 +77,13 @@ def gen_summary (long_local_file, local_token_score):
         for j in i:
             lower_word=j.text.lower()
             if lower_word not in extra_word:
-                if i in sentence_token_score.keys():
-                    # not the first word of sentence
-                    sentence_token_score[i]+=local_token_score[lower_word]
-                else:
-                    # first word of sentence
-                    sentence_token_score[i]=local_token_score[lower_word]
+                if new_line_string not in lower_word:
+                    if i in sentence_token_score.keys():
+                        # not the first word of sentence
+                        sentence_token_score[i]+=local_token_score[lower_word]
+                    else:
+                        # first word of sentence
+                        sentence_token_score[i]=local_token_score[lower_word]
 
     select_length=max(int(len(sentence_token)*summary_size),1)
     summary_sentences_1=nlargest(select_length, sentence_token_score, key=sentence_token_score.get)

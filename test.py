@@ -41,7 +41,6 @@ for local_file in file_list:
     ref_summary_token_simple = token_gen(ref_summary)
     # local_file_summary=gen_summary(long_local_file, local_token_score, len(ref_summary_token_simple))
     local_file_summary=gen_summary(long_local_file, local_token_score)
-    # print(local_file_summary)
 
     # generate metrics
     # ROUGE Score
