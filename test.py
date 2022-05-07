@@ -22,7 +22,7 @@ rouge=Rouge()
 # print first line of excel sheet
 print("local_file, rouge-1 f1-score, rouge-1 precision, rouge-1 recall,rouge-2 f1-score, rouge-2 precision, rouge-2 recall, rouge-l f1-score, rouge-l precision, rouge-l recall, bleu-1, bleu-2, bleu-3, bleu-4")
 
-local_file_weight=100.0
+local_file_weight=99.0
 processed_file_count=0
 for local_file in file_list:
     # log file count 
