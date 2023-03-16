@@ -17,9 +17,9 @@ google-pasta==0.2.0
 googleapis-common-protos==1.58.0
 grpcio==1.51.3
 h5py==3.6.0
-idna==3.4
-importlib-metadata==4.10.1
-Jinja2==3.1.2
+idna==3.3
+importlib-metadata==6.0.0
+Jinja2==3.0.3
 keras==2.8.0
 Keras-Preprocessing==1.1.2
 langcodes==3.3.0
