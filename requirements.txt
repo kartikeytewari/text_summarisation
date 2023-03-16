@@ -1,4 +1,4 @@
-absl-py==1.0.0
+absl-py==1.4.0
 astunparse==1.6.3
 blis==0.9.1
 cachetools==5.0.0
