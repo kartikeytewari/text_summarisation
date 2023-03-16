@@ -31,7 +31,7 @@ numpy==1.24.2
 oauthlib==3.2.2
 opt-einsum==3.3.0
 packaging==23.0
-pathy==0.6.1
+pathy==0.10.1
 preshed==3.0.6
 promise==2.3
 protobuf==4.22.1
