@@ -58,7 +58,7 @@ tensorflow-io-gcs-filesystem==0.24.0
 tensorflow-metadata==1.12.0
 termcolor==1.1.0
 tf-estimator-nightly==2.8.0.dev2021122109
-thinc==8.0.13
+thinc==8.1.9
 tqdm==4.65.0
 typer==0.4.0
 typing_extensions==4.5.0
