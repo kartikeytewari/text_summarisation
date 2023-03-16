@@ -24,7 +24,7 @@ keras==2.8.0
 Keras-Preprocessing==1.1.2
 langcodes==3.3.0
 libclang==13.0.0
-Markdown==3.3.6
+Markdown==3.4.1
 MarkupSafe==2.0.1
 murmurhash==1.0.6
 numpy==1.24.2
