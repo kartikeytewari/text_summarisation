@@ -18,7 +18,7 @@ googleapis-common-protos==1.54.0
 grpcio==1.51.3
 h5py==3.6.0
 idna==3.3
-importlib-metadata==4.10.1
+importlib-metadata==6.0.0
 Jinja2==3.0.3
 keras==2.8.0
 Keras-Preprocessing==1.1.2
