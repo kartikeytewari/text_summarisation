@@ -57,7 +57,7 @@ tensorflow-datasets==4.8.3
 tensorflow-io-gcs-filesystem==0.32.0
 tensorflow-metadata==1.12.0
 termcolor==2.2.0
-tf-estimator-nightly==2.13.0.dev2023032908
+tf-estimator-nightly==2.13.0.dev2023033008
 thinc==8.1.9
 tqdm==4.65.0
 typer==0.7.0
