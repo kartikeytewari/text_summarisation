@@ -55,7 +55,7 @@ tensorboard-plugin-wit==1.8.1
 tensorflow==2.12.0
 tensorflow-datasets==4.9.1
 tensorflow-io-gcs-filesystem==0.32.0
-tensorflow-metadata==1.13.0
+tensorflow-metadata==1.13.1
 termcolor==2.2.0
 tf-estimator-nightly==2.13.0.dev2023040708
 thinc==8.1.9
