@@ -49,7 +49,7 @@ spacy==3.5.2
 spacy-legacy==3.0.12
 spacy-loggers==1.0.4
 srsly==2.4.6
-tensorboard==2.12.1
+tensorboard==2.12.2
 tensorboard-data-server==0.7.0
 tensorboard-plugin-wit==1.8.1
 tensorflow==2.12.0
