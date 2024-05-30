@@ -4,5 +4,5 @@ nltk==3.8.1
 pip==24.0
 rouge==1.0.1
 tensorflow==2.16.1
-tensorflow-datasets==4.9.4
+tensorflow-datasets==4.9.5
 zipp==3.18.1
