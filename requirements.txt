@@ -3,6 +3,6 @@ importlib-resources==6.4.5
 nltk==3.9.1
 pip==24.2
 rouge==1.0.1
-tensorflow==2.17.1
+tensorflow==2.18.0
 tensorflow-datasets==4.9.6
 zipp==3.20.2
