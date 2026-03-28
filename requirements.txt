@@ -1,6 +1,6 @@
 en-core-web-lg==3.5.0
 importlib-resources==6.5.2
-nltk==3.9.3
+nltk==3.9.4
 pip==26.0.1
 rouge==1.0.1
 tensorflow==2.21.0
