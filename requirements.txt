@@ -5,4 +5,4 @@ pip==26.1.1
 rouge==1.0.1
 tensorflow==2.21.0
 tensorflow-datasets==4.9.10
-zipp==3.23.1
+zipp==4.1.0
